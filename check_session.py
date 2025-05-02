@@ -43,8 +43,11 @@ def check_and_save():
 
 end_time = datetime.now() + timedelta(minutes=6)
 
+print(f" Script started at {datetime.now()}", flush=True)
+
 while datetime.now() < end_time:
     check_and_save()
+    print(f" Waiting for 30 seconds... Current time: {datetime.now()}", flush=True)
     time.sleep(30)
 
 
