@@ -1,8 +1,8 @@
 
 import smtplib
 from email.message import EmailMessage
-from datetime import datetime, time, timedelta
-
+from datetime import datetime,  timedelta
+import time 
 
 
 EMAIL_ADDRESS = "your_email@gmail.com"
