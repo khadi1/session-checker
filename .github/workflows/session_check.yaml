@@ -1,0 +1,25 @@
+name: Check Session
+
+on:
+  schedule:
+    - cron: "27,57 7-20 * * *" # Run at :27 and :57 from 07:00–20:59 UTC (~08:00–21:00 your local)
+  workflow_dispatch: # Optional manual trigger
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run the script
+        run: python check_session.py
