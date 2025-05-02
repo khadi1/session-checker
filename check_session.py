@@ -3,15 +3,15 @@ import os
 import smtplib
 from datetime import datetime,  timedelta
 import time 
-# from dotenv import load_dotenv
 
 
 
 
+if os.getenv("ENV") != "production":
+    from dotenv import load_dotenv
+    load_dotenv()
 
-
-
-# load_dotenv() 
+ 
 APP_KEY = os.getenv("APP_KEY") 
 FROM_EMAIL = os.getenv("FROM_EMAIL") 
 TO_EMAIL = os.getenv("FROM_EMAIL") 
