@@ -1,8 +1,8 @@
 name: Check Session
 
 on:
-  schedule:
-    - cron: "27,57 7-20 * * *" # Run at :27 and :57 from 07:00–20:59 UTC (~08:00–21:00 your local)
+  # schedule:
+  #   - cron: "27,57 7-20 * * *" # Run at :27 and :57 from 07:00–20:59 UTC (~08:00–21:00 your local)
   workflow_dispatch: # Optional manual trigger
   push: # Run on every push
 
