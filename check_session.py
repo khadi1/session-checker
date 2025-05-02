@@ -1,7 +1,7 @@
 
 import smtplib
 from email.message import EmailMessage
-from datetime import datetime
+from datetime import datetime, time
 
 
 
@@ -9,13 +9,15 @@ EMAIL_ADDRESS = "your_email@gmail.com"
 EMAIL_PASSWORD = "your_app_password"  # Use App Passwords if 2FA enabled
 TO_EMAIL = "your_email@gmail.com"
 URL = "https://tedo.app/"
-URL_SESSION = "https://api.tedo.app/web-api/sessions/37"
+URL_SESSION = "https://api.tedo.app/web-api/sessions/38"
 
 
 
 import requests
 import json
 from datetime import datetime
+
+
 
 def check_and_save():
     url = URL_SESSION
@@ -39,9 +41,11 @@ def check_and_save():
 
 
 
+end_time = datetime.now() + timedelta(minutes=6)
 
-check_and_save()
-
+while datetime.now() < end_time:
+    check_and_save()
+    time.sleep(30)
 
 
 
