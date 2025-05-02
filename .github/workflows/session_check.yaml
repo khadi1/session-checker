@@ -13,6 +13,8 @@ env:
   URL: ${{ secrets.URL}}
   URL_SESSION: ${{ secrets.URL_SESSION}}
   PAYLOAD: ${{ secrets.PAYLOAD}}
+  URL_DOC: ${{ secrets.URL_DOC}}
+  PASSPHRASE: ${{ secrets.PASSPHRASE}}
 
 jobs:
   run-script:
