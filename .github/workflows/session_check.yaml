@@ -6,6 +6,12 @@ on:
   workflow_dispatch: # Optional manual trigger
   push: # Run on every push
 
+env:
+  FROM_EMAIL: ${{ secrets.FROM_EMAIL }}
+  APP_KEY: ${{ secrets.APP_KEY }}
+  URL: ${{ secrets.URL}}
+  URL_SESSION: ${{ secrets.URL_SESSION}}
+
 jobs:
   run-script:
     runs-on: ubuntu-latest
