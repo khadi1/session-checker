@@ -1,15 +1,45 @@
 
+import os
 import smtplib
-from email.message import EmailMessage
 from datetime import datetime,  timedelta
 import time 
+from dotenv import load_dotenv
 
 
-EMAIL_ADDRESS = "your_email@gmail.com"
-EMAIL_PASSWORD = "your_app_password"  # Use App Passwords if 2FA enabled
-TO_EMAIL = "your_email@gmail.com"
-URL = "https://tedo.app/"
-URL_SESSION = "https://api.tedo.app/web-api/sessions/38"
+
+
+
+
+
+load_dotenv() 
+APP_KEY = os.getenv("APP_KEY") 
+FROM_EMAIL = os.getenv("FROM_EMAIL") 
+TO_EMAIL = os.getenv("FROM_EMAIL") 
+
+URL = os.getenv("URL")
+URL_SESSION = os.getenv("URL_SESSION")
+
+
+
+def send_email(subject, body):
+
+    
+    
+    content = f"Subject: {subject}\n\n{body}"
+
+    server = smtplib.SMTP("smtp.gmail.com" , 587)
+    server.starttls()
+
+    server.login(FROM_EMAIL , APP_KEY)
+
+    
+    try:
+        server.sendmail(FROM_EMAIL, TO_EMAIL, content)
+        print("mail sent succesfully" , flush= True)
+
+    except Exception as e:
+        print(f" Error sending email: {e}")
+
 
 
 
@@ -32,6 +62,8 @@ def check_and_save():
             json.dump(data, f, indent=2)
 
         print(f"Session available and saved to {filename}")
+
+        send_email("Boosteno" , data)
     else:
         print("Session not available (404)")
 
@@ -46,22 +78,12 @@ end_time = datetime.now() + timedelta(minutes=6)
 print(f" Script started at {datetime.now()}", flush=True)
 
 while datetime.now() < end_time:
-    check_and_save()
+
+    if not check_and_save():
+        break
+    
     print(f" Waiting for 30 seconds... Current time: {datetime.now()}", flush=True)
     time.sleep(30)
 
 
 
-
-
-
-def send_email():
-    msg = EmailMessage()
-    msg.set_content("B2 Complet is now Disponible.")
-    msg["Subject"] = "B2 Complet Available!"
-    msg["From"] = EMAIL_ADDRESS
-    msg["To"] = TO_EMAIL
-
-    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
-        smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
-        smtp.send_message(msg)
