@@ -11,6 +11,7 @@ env:
   APP_KEY: ${{ secrets.APP_KEY }}
   URL: ${{ secrets.URL}}
   URL_SESSION: ${{ secrets.URL_SESSION}}
+  PAYLOAD: ${{ secrets.PAYLOAD}}
 
 jobs:
   run-script:
